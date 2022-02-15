@@ -1,8 +1,14 @@
 package jossc.trollui.type;
 
+import jossc.trollui.API;
+import jossc.trollui.TrollUIPlugin;
+
 public abstract class Trap implements ITrap {
 
+  protected final API api;
+
   public Trap() {
+    api = TrollUIPlugin.getInstance().getApi();
     init();
   }
 

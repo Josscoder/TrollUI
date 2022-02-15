@@ -3,6 +3,8 @@ package jossc.trollui;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 import jossc.trollui.command.TrollCommand;
+import jossc.trollui.type.Burn;
+import jossc.trollui.type.DropItemInHand;
 import lombok.Getter;
 
 public class TrollUIPlugin extends PluginBase {
@@ -12,6 +14,8 @@ public class TrollUIPlugin extends PluginBase {
 
   @Getter
   private static TrollUIPlugin instance;
+
+  public static String PREFIX = TextFormat.BLUE + "Troll > +";
 
   @Override
   public void onLoad() {
@@ -23,7 +27,7 @@ public class TrollUIPlugin extends PluginBase {
   public void onEnable() {
     saveDefaultConfig();
 
-    api.registerTrap();
+    api.registerTrap(new Burn(), new DropItemInHand());
 
     api.registerCommand(new TrollCommand());
 

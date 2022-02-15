@@ -1,6 +1,8 @@
 package jossc.trollui;
 
+import cn.nukkit.Player;
 import cn.nukkit.command.Command;
+import cn.nukkit.inventory.PlayerInventory;
 import java.util.*;
 import jossc.trollui.type.ITrap;
 import lombok.Getter;
@@ -11,10 +13,10 @@ public class API {
   private final TrollUIPlugin pluginInstance;
 
   @Getter
-  private final Map<String, ITrap> traps = new HashMap<>();
+  private final Map<String, ITrap> traps = new LinkedHashMap<>();
 
   @Getter
-  private final List<String> blockedTraps = new ArrayList<>();
+  private final List<String> blockedTraps = new LinkedList<>();
 
   public API(TrollUIPlugin pluginInstance) {
     this.pluginInstance = pluginInstance;
@@ -54,6 +56,18 @@ public class API {
       .getServer()
       .getCommandMap()
       .register(command.getName(), command);
+  }
+
+  public void updateArmorContents(Player player) {
+    PlayerInventory inventory = player.getInventory();
+    inventory.sendArmorContents(player);
+  }
+
+  public void updateInventory(Player player) {
+    PlayerInventory inventory = player.getInventory();
+    updateArmorContents(player);
+    inventory.sendContents(player);
+    inventory.sendHeldItem(player);
   }
 
   public void close() {
