@@ -120,7 +120,7 @@ public class TrollCommand extends VanillaCommand {
         iTrap ->
           form.addButton(
             iTrap.getId(),
-            iTrap.getId(),
+            iTrap.getIdToUpperCase(),
             (
               iTrap.getImage().startsWith("http")
                 ? ImageType.URL

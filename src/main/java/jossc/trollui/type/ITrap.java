@@ -6,10 +6,12 @@ public interface ITrap {
   String getId();
   String getIdToLowerCase();
   String getIdToUpperCase();
-  String getImage();
 
   void init();
-  void close();
+
+  String getImage();
 
   void execute(Player owner, Player target);
+
+  void close();
 }

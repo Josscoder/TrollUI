@@ -7,15 +7,12 @@ import jossc.trollui.TrollUIPlugin;
 public class Burn extends Trap {
 
   @Override
-  public String getImage() {
-    return "";
-  }
-
-  @Override
   public void init() {}
 
   @Override
-  public void close() {}
+  public String getImage() {
+    return "";
+  }
 
   @Override
   public void execute(Player owner, Player target) {
@@ -28,4 +25,7 @@ public class Burn extends Trap {
       " is now in fire for 10 seconds!"
     );
   }
+
+  @Override
+  public void close() {}
 }

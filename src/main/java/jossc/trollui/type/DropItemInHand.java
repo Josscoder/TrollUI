@@ -8,15 +8,12 @@ import jossc.trollui.TrollUIPlugin;
 public class DropItemInHand extends Trap {
 
   @Override
-  public String getImage() {
-    return "";
-  }
-
-  @Override
   public void init() {}
 
   @Override
-  public void close() {}
+  public String getImage() {
+    return "";
+  }
 
   @Override
   public void execute(Player owner, Player target) {
@@ -31,4 +28,7 @@ public class DropItemInHand extends Trap {
       " has dropped the item in hand!"
     );
   }
+
+  @Override
+  public void close() {}
 }
