@@ -52,7 +52,8 @@ public class TrollCommand extends VanillaCommand {
 
   private void showSelectPlayerForm(Player player) {
     SimpleWindowForm form = FormAPI.simpleWindowForm(
-      TextFormat.BOLD.toString() + TextFormat.AQUA + "SELECT A PLAYER",
+      null,
+      TextFormat.BOLD.toString() + TextFormat.DARK_AQUA + "SELECT A PLAYER",
       "This will be the player you troll"
     );
 
@@ -93,7 +94,7 @@ public class TrollCommand extends VanillaCommand {
   ) {
     SimpleWindowForm form = FormAPI.simpleWindowForm(
       TextFormat.BOLD.toString() +
-      TextFormat.GOLD +
+      TextFormat.DARK_AQUA +
       "TRAPS LIST" +
       TextFormat.RESET +
       TextFormat.GRAY +

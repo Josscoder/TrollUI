@@ -2,6 +2,7 @@ package jossc.trollui;
 
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
+import com.denzelcode.form.FormAPI;
 import jossc.trollui.command.TrollCommand;
 import jossc.trollui.type.Burn;
 import jossc.trollui.type.DropItemInHand;
@@ -15,7 +16,7 @@ public class TrollUIPlugin extends PluginBase {
   @Getter
   private static TrollUIPlugin instance;
 
-  public static String PREFIX = TextFormat.BLUE + "Troll > +";
+  public static String PREFIX = TextFormat.BLUE + "Troll> ";
 
   @Override
   public void onLoad() {
@@ -27,8 +28,9 @@ public class TrollUIPlugin extends PluginBase {
   public void onEnable() {
     saveDefaultConfig();
 
-    api.registerTrap(new Burn(), new DropItemInHand());
+    FormAPI.init(this);
 
+    api.registerTrap(new Burn(), new DropItemInHand());
     api.registerCommand(new TrollCommand());
 
     getLogger().info(TextFormat.GREEN + "This plugin has been enabled!");

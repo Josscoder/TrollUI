@@ -20,6 +20,7 @@ public class Burn extends Trap {
   @Override
   public void execute(Player owner, Player target) {
     target.setOnFire(10);
+
     owner.sendMessage(
       TrollUIPlugin.PREFIX +
       TextFormat.GREEN +
