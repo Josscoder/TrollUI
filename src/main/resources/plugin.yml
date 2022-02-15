@@ -1,0 +1,5 @@
+name: TrollUI
+main: jossc.trollui.TrollUIPlugin
+api: 1.0.0
+version: ${project.version}
+author: Josscoder
