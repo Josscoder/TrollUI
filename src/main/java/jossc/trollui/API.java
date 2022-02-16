@@ -6,8 +6,11 @@ import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockFire;
 import cn.nukkit.command.Command;
 import cn.nukkit.entity.Entity;
+import cn.nukkit.entity.item.EntityPrimedTNT;
 import cn.nukkit.inventory.PlayerInventory;
+import cn.nukkit.item.Item;
 import cn.nukkit.level.Level;
+import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
 import cn.nukkit.level.Sound;
 import cn.nukkit.math.Vector3;
@@ -308,6 +311,35 @@ public class API {
         player.addEffect(effect);
         player.sendPotionEffects(player);
       }
+    }
+  }
+
+  public void shuffleInventory(Player player) {
+    PlayerInventory inventory = player.getInventory();
+
+    List<Item> list = new ArrayList<>(inventory.getContents().values());
+    Collections.shuffle(list);
+
+    Map<Integer, Item> contents = new HashMap<>();
+
+    int i = 0;
+    for (Item item : list) {
+      contents.put(i, item);
+      i++;
+    }
+
+    inventory.setContents(contents);
+
+    updateInventory(player);
+  }
+
+  public void spawnNuke(Location location) {
+    for (int i = 0; i <= 10; i++) {
+      EntityPrimedTNT primedTNT = new EntityPrimedTNT(
+        location.getChunk(),
+        Entity.getDefaultNBT(location.add(0, 1))
+      );
+      primedTNT.spawnToAll();
     }
   }
 }
