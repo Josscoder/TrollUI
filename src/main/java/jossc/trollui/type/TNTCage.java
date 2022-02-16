@@ -1,18 +1,19 @@
 package jossc.trollui.type;
 
 import cn.nukkit.Player;
-import cn.nukkit.block.BlockAir;
+import cn.nukkit.block.BlockBedrock;
+import cn.nukkit.block.BlockTNT;
 import cn.nukkit.utils.TextFormat;
 import jossc.trollui.TrollUIPlugin;
 
-public class DropItemInHand extends Trap {
+public class TNTCage extends Trap {
 
   @Override
   public void init() {}
 
   @Override
   public String getId() {
-    return "Drop Item In Hand";
+    return "TNT Cage";
   }
 
   @Override
@@ -22,15 +23,15 @@ public class DropItemInHand extends Trap {
 
   @Override
   public void execute(Player owner, Player target) {
-    target.dropItem(target.getInventory().getItemInHand());
-    target.getInventory().setItemInHand(new BlockAir().toItem());
-    api.updateInventory(target);
+    api.buildCage(target, new BlockTNT());
+    api.spawnLightning(target.add(0, 1));
+    api.burn(target.add(0, 1));
 
     owner.sendMessage(
       TrollUIPlugin.PREFIX +
       TextFormat.GREEN +
       target.getName() +
-      " has dropped the item in hand!"
+      " is in a tnt cage now, tik tak boom!"
     );
   }
 

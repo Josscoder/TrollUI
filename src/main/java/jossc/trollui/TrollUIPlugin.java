@@ -4,8 +4,10 @@ import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 import com.denzelcode.form.FormAPI;
 import jossc.trollui.command.TrollCommand;
+import jossc.trollui.type.BedrockCage;
 import jossc.trollui.type.Burn;
 import jossc.trollui.type.DropItemInHand;
+import jossc.trollui.type.TNTCage;
 import lombok.Getter;
 
 public class TrollUIPlugin extends PluginBase {
@@ -30,7 +32,12 @@ public class TrollUIPlugin extends PluginBase {
 
     FormAPI.init(this);
 
-    api.registerTrap(new Burn(), new DropItemInHand());
+    api.registerTrap(
+      new Burn(),
+      new DropItemInHand(),
+      new BedrockCage(),
+      new TNTCage()
+    );
     api.registerCommand(new TrollCommand());
 
     getLogger().info(TextFormat.GREEN + "This plugin has been enabled!");

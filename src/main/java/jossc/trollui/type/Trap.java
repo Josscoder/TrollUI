@@ -12,31 +12,9 @@ public abstract class Trap implements ITrap {
     init();
   }
 
-  private String amendSentences(String oldString) {
-    StringBuilder builder = new StringBuilder();
-
-    char[] oldStringToChar = oldString.toCharArray();
-
-    for (int i = 0; i < oldStringToChar.length; i++) {
-      if (oldStringToChar[i] >= 'A' && oldStringToChar[i] <= 'Z') {
-        oldStringToChar[i] = (char) (oldStringToChar[i] + 32);
-
-        if (i != 0) {
-          builder.append(" ");
-        }
-
-        builder.append(oldStringToChar[i]);
-      } else {
-        builder.append(oldStringToChar[i]);
-      }
-    }
-
-    return builder.toString();
-  }
-
   @Override
   public String getId() {
-    return amendSentences(getClass().getSimpleName());
+    return getClass().getSimpleName();
   }
 
   @Override
