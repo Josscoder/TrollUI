@@ -4,10 +4,7 @@ import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 import com.denzelcode.form.FormAPI;
 import jossc.trollui.command.TrollCommand;
-import jossc.trollui.type.BedrockCage;
-import jossc.trollui.type.Burn;
-import jossc.trollui.type.DropItemInHand;
-import jossc.trollui.type.TNTCage;
+import jossc.trollui.type.*;
 import lombok.Getter;
 
 public class TrollUIPlugin extends PluginBase {
@@ -36,7 +33,14 @@ public class TrollUIPlugin extends PluginBase {
       new Burn(),
       new DropItemInHand(),
       new BedrockCage(),
-      new TNTCage()
+      new TNTCage(),
+      new LightningStrike(),
+      new DropInventory(),
+      new LookRandom(),
+      new Launch(),
+      new ShuffleInventory(),
+      new Nuke(),
+      new AllEffects()
     );
     api.registerCommand(new TrollCommand());
 

@@ -13,6 +13,7 @@ import cn.nukkit.level.Sound;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.network.protocol.AddEntityPacket;
 import cn.nukkit.network.protocol.DataPacket;
+import cn.nukkit.potion.Effect;
 import cn.nukkit.utils.TextFormat;
 import com.denzelcode.form.FormAPI;
 import com.denzelcode.form.element.ImageType;
@@ -196,6 +197,14 @@ public class API {
           return;
         }
 
+        if (
+          trap.hasPermission() && !owner.hasPermission(trap.getPermission())
+        ) {
+          owner.sendMessage(TextFormat.RED + "You do not have permissions!");
+
+          return;
+        }
+
         trap.execute(owner, target);
       }
     );
@@ -285,5 +294,20 @@ public class API {
       fire,
       fire.tickRate() + ThreadLocalRandom.current().nextInt(10)
     );
+  }
+
+  public void applyAllEffects(Player player, int seconds) {
+    for (int i = 1; i <= 29; i++) {
+      Effect effect = Effect.getEffect(i);
+
+      if (effect != null) {
+        effect.setDuration(20 * seconds);
+        effect.setAmplifier(2);
+        effect.setVisible(false);
+
+        player.addEffect(effect);
+        player.sendPotionEffects(player);
+      }
+    }
   }
 }

@@ -6,6 +6,9 @@ public interface ITrap {
   String getId();
   String getIdToLowerCase();
   String getIdToUpperCase();
+  String getPermission();
+
+  boolean hasPermission();
 
   void init();
 

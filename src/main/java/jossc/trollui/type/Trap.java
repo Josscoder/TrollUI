@@ -26,4 +26,14 @@ public abstract class Trap implements ITrap {
   public String getIdToUpperCase() {
     return getId().toUpperCase();
   }
+
+  @Override
+  public String getPermission() {
+    return "";
+  }
+
+  @Override
+  public boolean hasPermission() {
+    return !getPermission().isEmpty();
+  }
 }
