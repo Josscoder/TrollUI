@@ -12,7 +12,7 @@ public class Launch extends Trap {
 
   @Override
   public String getImage() {
-    return "";
+    return "textures/ui/dressing_room_animation.png";
   }
 
   @Override
@@ -23,7 +23,7 @@ public class Launch extends Trap {
       TrollUIPlugin.PREFIX +
       TextFormat.GREEN +
       target.getName() +
-      " tta was thrown into the sky!"
+      " was thrown into the sky!"
     );
   }
 

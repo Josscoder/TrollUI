@@ -1,7 +1,6 @@
 package jossc.trollui.type;
 
 import cn.nukkit.Player;
-import cn.nukkit.block.BlockBedrock;
 import cn.nukkit.block.BlockTNT;
 import cn.nukkit.utils.TextFormat;
 import jossc.trollui.TrollUIPlugin;
@@ -18,7 +17,7 @@ public class TNTCage extends Trap {
 
   @Override
   public String getImage() {
-    return "";
+    return "textures/blocks/tnt_top.png";
   }
 
   @Override

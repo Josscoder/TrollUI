@@ -4,26 +4,30 @@ import cn.nukkit.Player;
 import cn.nukkit.utils.TextFormat;
 import jossc.trollui.TrollUIPlugin;
 
-public class Nuke extends Trap {
+public class ChangeTime extends Trap {
 
   @Override
   public void init() {}
 
   @Override
+  public String getId() {
+    return "Change Time";
+  }
+
+  @Override
   public String getImage() {
-    return "textures/blocks/tnt_side.png";
+    return "textures/ui/time_4sunset.png";
   }
 
   @Override
   public void execute(Player owner, Player target) {
-    api.spawnNuke(target);
+    api.changeTimeSeveralTimes(target);
 
     owner.sendMessage(
       TrollUIPlugin.PREFIX +
       TextFormat.GREEN +
-      "A nuclear weapon is about to explode near " +
       target.getName() +
-      "!"
+      " time cycle suddenly changes!"
     );
   }
 

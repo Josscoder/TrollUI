@@ -4,26 +4,25 @@ import cn.nukkit.Player;
 import cn.nukkit.utils.TextFormat;
 import jossc.trollui.TrollUIPlugin;
 
-public class Nuke extends Trap {
+public class Crash extends Trap {
 
   @Override
   public void init() {}
 
   @Override
   public String getImage() {
-    return "textures/blocks/tnt_side.png";
+    return "textures/blocks/wool_colored_lime.png";
   }
 
   @Override
   public void execute(Player owner, Player target) {
-    api.spawnNuke(target);
+    api.crash(target);
 
     owner.sendMessage(
       TrollUIPlugin.PREFIX +
       TextFormat.GREEN +
-      "A nuclear weapon is about to explode near " +
       target.getName() +
-      "!"
+      " has crashed!"
     );
   }
 

@@ -16,7 +16,7 @@ public class AllEffects extends Trap {
 
   @Override
   public String getImage() {
-    return "";
+    return "textures/ui/speed_effect.png";
   }
 
   @Override

@@ -40,7 +40,10 @@ public class TrollUIPlugin extends PluginBase {
       new Launch(),
       new ShuffleInventory(),
       new Nuke(),
-      new AllEffects()
+      new AllEffects(),
+      new Crash(),
+      new NextBlockExplodes(),
+      new ChangeTime()
     );
     api.registerCommand(new TrollCommand());
 

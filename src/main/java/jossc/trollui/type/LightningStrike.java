@@ -16,7 +16,7 @@ public class LightningStrike extends Trap {
 
   @Override
   public String getImage() {
-    return "";
+    return "textures/ui/weather_thunderstorm.png";
   }
 
   @Override

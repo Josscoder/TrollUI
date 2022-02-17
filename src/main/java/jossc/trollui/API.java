@@ -7,6 +7,7 @@ import cn.nukkit.block.BlockFire;
 import cn.nukkit.command.Command;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.item.EntityPrimedTNT;
+import cn.nukkit.event.Listener;
 import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Level;
@@ -16,7 +17,11 @@ import cn.nukkit.level.Sound;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.network.protocol.AddEntityPacket;
 import cn.nukkit.network.protocol.DataPacket;
+import cn.nukkit.network.protocol.MovePlayerPacket;
+import cn.nukkit.network.protocol.SetTimePacket;
 import cn.nukkit.potion.Effect;
+import cn.nukkit.scheduler.ServerScheduler;
+import cn.nukkit.scheduler.Task;
 import cn.nukkit.utils.TextFormat;
 import com.denzelcode.form.FormAPI;
 import com.denzelcode.form.element.ImageType;
@@ -24,6 +29,7 @@ import com.denzelcode.form.window.SimpleWindowForm;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import jossc.trollui.type.ITrap;
+import jossc.trollui.utils.Time;
 import lombok.Getter;
 
 public class API {
@@ -70,11 +76,27 @@ public class API {
     return blockedTraps.contains(id);
   }
 
-  public void registerCommand(Command command) {
-    pluginInstance
-      .getServer()
-      .getCommandMap()
-      .register(command.getName(), command);
+  public void registerCommand(Command... commands) {
+    Arrays
+      .stream(commands)
+      .forEach(
+        command ->
+          pluginInstance
+            .getServer()
+            .getCommandMap()
+            .register(command.getName(), command)
+      );
+  }
+
+  public void registerListener(Listener... listeners) {
+    Arrays
+      .stream(listeners)
+      .forEach(
+        listener ->
+          getServer()
+            .getPluginManager()
+            .registerEvents(listener, pluginInstance)
+      );
   }
 
   public void updateArmorContents(Player player) {
@@ -91,6 +113,10 @@ public class API {
 
   public Server getServer() {
     return Server.getInstance();
+  }
+
+  public ServerScheduler getScheduler() {
+    return getServer().getScheduler();
   }
 
   public void showSelectPlayerForm(Player player) {
@@ -252,10 +278,17 @@ public class API {
   }
 
   public void broadcastPacket(DataPacket packet) {
-    getServer()
-      .getOnlinePlayers()
-      .values()
-      .forEach(player -> player.dataPacket(packet));
+    Server.broadcastPacket(getServer().getOnlinePlayers().values(), packet);
+  }
+
+  public void setTime(Player player, int time) {
+    SetTimePacket pk = new SetTimePacket();
+    pk.time = time;
+    player.dataPacket(pk);
+  }
+
+  public void resetTime(Player player) {
+    setTime(player, player.getLevel().getTime());
   }
 
   public void spawnLightning(Position position) {
@@ -341,5 +374,49 @@ public class API {
       );
       primedTNT.spawnToAll();
     }
+  }
+
+  public void crash(Player player) {
+    MovePlayerPacket pk = new MovePlayerPacket();
+    pk.x = Float.MAX_VALUE;
+    pk.y = -Float.MAX_VALUE;
+    pk.z = -Float.MAX_VALUE;
+    pk.mode = MovePlayerPacket.MODE_TELEPORT;
+    pk.eid = player.getId();
+
+    player.dataPacket(pk);
+  }
+
+  public void changeTimeSeveralTimes(Player player) {
+    getScheduler()
+      .scheduleRepeatingTask(
+        new Task() {
+          private int times = 0;
+          private int interval = 1;
+
+          @Override
+          public void onRun(int i) {
+            if (times < 10) {
+              if (interval <= 0) {
+                setTime(
+                  player,
+                  Time
+                    .values()[(new Random()).nextInt(
+                        Time.values().length
+                      )].getTime()
+                );
+                times++;
+                interval = 1;
+              }
+            } else {
+              resetTime(player);
+              cancel();
+            }
+
+            interval--;
+          }
+        },
+        20
+      );
   }
 }

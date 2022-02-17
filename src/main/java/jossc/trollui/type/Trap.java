@@ -18,6 +18,11 @@ public abstract class Trap implements ITrap {
   }
 
   @Override
+  public String getImage() {
+    return "textures/blocks/barrier.png";
+  }
+
+  @Override
   public String getIdToLowerCase() {
     return getId().toLowerCase();
   }

@@ -17,7 +17,7 @@ public class BedrockCage extends Trap {
 
   @Override
   public String getImage() {
-    return "";
+    return "textures/blocks/bedrock.png";
   }
 
   @Override

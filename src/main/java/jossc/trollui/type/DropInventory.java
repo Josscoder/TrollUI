@@ -17,7 +17,7 @@ public class DropInventory extends Trap {
 
   @Override
   public String getImage() {
-    return "";
+    return "textures/ui/inventory_icon.png";
   }
 
   @Override
