@@ -23,6 +23,7 @@ public class LightningStrike extends Trap {
   public void execute(Player owner, Player target) {
     api.spawnLightning(target);
     api.burn(target);
+    target.attack(1.0f);
 
     owner.sendMessage(
       TrollUIPlugin.PREFIX +

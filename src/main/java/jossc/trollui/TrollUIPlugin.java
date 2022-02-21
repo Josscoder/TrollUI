@@ -29,6 +29,8 @@ public class TrollUIPlugin extends PluginBase {
 
     FormAPI.init(this);
 
+    api.initBlockedTraps(getConfig().getStringList("blocked.traps"));
+
     api.registerTrap(
       new Burn(),
       new DropItemInHand(),
@@ -43,7 +45,8 @@ public class TrollUIPlugin extends PluginBase {
       new AllEffects(),
       new Crash(),
       new NextBlockExplodes(),
-      new ChangeTime()
+      new ChangeTime(),
+      new HideAllPlayers()
     );
     api.registerCommand(new TrollCommand());
 

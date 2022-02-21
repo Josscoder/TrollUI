@@ -28,6 +28,7 @@ import com.denzelcode.form.element.ImageType;
 import com.denzelcode.form.window.SimpleWindowForm;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import jossc.trollui.type.ITrap;
 import jossc.trollui.utils.Time;
 import lombok.Getter;
@@ -56,24 +57,47 @@ public class API {
   }
 
   public void registerTrap(ITrap... trap) {
-    Arrays.stream(trap).forEach(iTrap -> traps.put(iTrap.getId(), iTrap));
+    Arrays
+      .stream(trap)
+      .filter(iTrap -> !trapIsBlocked(iTrap.getId()))
+      .collect(Collectors.toList())
+      .forEach(
+        iTrap -> {
+          traps.put(iTrap.getId(), iTrap);
+          getServer()
+            .getLogger()
+            .info(TextFormat.GREEN + iTrap.getId() + " trap was initiated!");
+        }
+      );
+  }
+
+  public void initBlockedTraps(List<String> traps) {
+    traps.forEach(this::blockTrap);
   }
 
   public void blockTrap(String id) {
-    ITrap trap = traps.get(id);
+    blockTrap(id, false);
+  }
 
-    if (trap == null) {
-      return;
+  public void blockTrap(String id, boolean close) {
+    if (close) {
+      ITrap trap = traps.get(id);
+
+      if (trap == null) {
+        return;
+      }
+
+      trap.close();
     }
 
-    trap.close();
-
-    blockedTraps.add(id);
+    blockedTraps.add(id.toLowerCase());
     traps.remove(id);
+
+    getServer().getLogger().warning(TextFormat.RED + id + " trap was blocked!");
   }
 
   public boolean trapIsBlocked(String id) {
-    return blockedTraps.contains(id);
+    return blockedTraps.contains(id.toLowerCase());
   }
 
   public void registerCommand(Command... commands) {
@@ -418,5 +442,13 @@ public class API {
         },
         20
       );
+  }
+
+  public void showAllPlayers(Player player) {
+    getServer().getOnlinePlayers().values().forEach(player::showPlayer);
+  }
+
+  public void hiddeAllPlayers(Player player) {
+    getServer().getOnlinePlayers().values().forEach(player::hidePlayer);
   }
 }

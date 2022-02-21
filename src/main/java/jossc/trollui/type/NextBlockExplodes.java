@@ -7,7 +7,6 @@ import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.block.BlockPlaceEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.level.Explosion;
-import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
 import cn.nukkit.utils.TextFormat;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import jossc.trollui.TrollUIPlugin;
 
 public class NextBlockExplodes extends Trap implements Listener {
 
-  private final List<Player> players = new ArrayList<>();
+  private final List<Player> storage = new ArrayList<>();
 
   @Override
   public void init() {
@@ -37,7 +36,7 @@ public class NextBlockExplodes extends Trap implements Listener {
   public void onQuit(PlayerQuitEvent event) {
     Player player = event.getPlayer();
 
-    players.remove(player);
+    storage.remove(player);
   }
 
   @EventHandler
@@ -51,19 +50,19 @@ public class NextBlockExplodes extends Trap implements Listener {
   }
 
   private void handle(Player player, Position position) {
-    if (!players.contains(player)) {
+    if (!storage.contains(player)) {
       return;
     }
 
-    players.remove(player);
+    storage.remove(player);
 
     new Explosion(position, 10, null).explode();
   }
 
   @Override
   public void execute(Player owner, Player target) {
-    if (!players.contains(target)) {
-      players.add(target);
+    if (!storage.contains(target)) {
+      storage.add(target);
     }
 
     owner.sendMessage(
