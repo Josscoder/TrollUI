@@ -27,7 +27,9 @@ public class TrollUIPlugin extends PluginBase {
   public void onEnable() {
     saveDefaultConfig();
 
-    FormAPI.init(this);
+    if (!getConfig().getBoolean("ubbly.mode")) {
+      FormAPI.init(this);
+    }
 
     api.initBlockedTraps(getConfig().getStringList("blocked.traps"));
 
@@ -46,7 +48,9 @@ public class TrollUIPlugin extends PluginBase {
       new Crash(),
       new NextBlockExplodes(),
       new ChangeTime(),
-      new HideAllPlayers()
+      new HideAllPlayers(),
+      new Vanish(),
+      new Creepers()
     );
     api.registerCommand(new TrollCommand());
 

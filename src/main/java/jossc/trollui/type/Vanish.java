@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import jossc.trollui.TrollUIPlugin;
 
-public class HideAllPlayers extends Trap implements Listener {
+public class Vanish extends Trap implements Listener {
 
   private final List<Player> storage = new ArrayList<>();
 
@@ -22,30 +22,24 @@ public class HideAllPlayers extends Trap implements Listener {
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onJoin(PlayerJoinEvent event) {
     Player player = event.getPlayer();
-    if (!storage.contains(player)) {
-      return;
-    }
-
-    api.hideOnlinePlayersToPlayer(player);
-  }
-
-  @Override
-  public String getId() {
-    return "Hide All Players";
+    storage.forEach(player::hidePlayer);
   }
 
   @Override
   public void execute(Player owner, Player target) {
     String subfix;
+    String connector;
 
     if (storage.contains(target)) {
-      api.showOnlinePlayersToPlayer(target);
+      api.showPlayerToOnlinePlayers(target);
       storage.remove(target);
       subfix = "showed";
+      connector = "to";
     } else {
-      api.hideOnlinePlayersToPlayer(target);
+      api.hidePlayerFromOnlinePlayers(target);
       storage.add(target);
-      subfix = "hided";
+      subfix = "hid";
+      connector = "from";
     }
 
     owner.sendMessage(
@@ -53,8 +47,11 @@ public class HideAllPlayers extends Trap implements Listener {
       TextFormat.GREEN +
       "You " +
       subfix +
-      " all the players to " +
-      target.getName()
+      " " +
+      target.getName() +
+      " " +
+      connector +
+      " the players!"
     );
   }
 

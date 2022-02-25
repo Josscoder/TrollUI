@@ -2,6 +2,8 @@ package jossc.trollui.command;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.command.data.CommandParamType;
+import cn.nukkit.command.data.CommandParameter;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.utils.TextFormat;
 import jossc.trollui.API;
@@ -18,11 +20,19 @@ public class TrollCommand extends VanillaCommand {
     );
     setPermission("command.troll.ui");
     setPermissionMessage(TextFormat.RED + "You do not have permissions!");
+
+    this.commandParameters.clear();
+    this.commandParameters.put(
+        "default",
+        new CommandParameter[] {
+          new CommandParameter("player", CommandParamType.TARGET, false)
+        }
+      );
   }
 
   @Override
   public boolean execute(CommandSender sender, String label, String[] args) {
-    if (!(sender.isPlayer() || testPermission(sender))) {
+    if (!sender.isPlayer() || !testPermission(sender)) {
       return false;
     }
 

@@ -7,6 +7,7 @@ import cn.nukkit.block.BlockFire;
 import cn.nukkit.command.Command;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.item.EntityPrimedTNT;
+import cn.nukkit.entity.mob.EntityCreeper;
 import cn.nukkit.event.Listener;
 import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
@@ -444,11 +445,40 @@ public class API {
       );
   }
 
-  public void showAllPlayers(Player player) {
+  public void showOnlinePlayersToPlayer(Player player) {
     getServer().getOnlinePlayers().values().forEach(player::showPlayer);
   }
 
-  public void hiddeAllPlayers(Player player) {
+  public void hideOnlinePlayersToPlayer(Player player) {
     getServer().getOnlinePlayers().values().forEach(player::hidePlayer);
+  }
+
+  public void showPlayerToOnlinePlayers(Player player) {
+    getServer()
+      .getOnlinePlayers()
+      .values()
+      .forEach(onlinePlayer -> onlinePlayer.showPlayer(player));
+  }
+
+  public void hidePlayerFromOnlinePlayers(Player player) {
+    getServer()
+      .getOnlinePlayers()
+      .values()
+      .forEach(onlinePlayer -> onlinePlayer.hidePlayer(player));
+  }
+
+  public List<EntityCreeper> spawnCreepers(Location location, int count) {
+    List<EntityCreeper> creepers = new ArrayList<>();
+
+    for (int i = 1; i <= count; i++) {
+      EntityCreeper creeper = new EntityCreeper(
+        location.getChunk(),
+        Entity.getDefaultNBT(location)
+      );
+      creeper.spawnToAll();
+      creepers.add(creeper);
+    }
+
+    return creepers;
   }
 }
