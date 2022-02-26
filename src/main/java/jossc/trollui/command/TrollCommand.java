@@ -44,7 +44,11 @@ public class TrollCommand extends VanillaCommand {
       return false;
     }
 
-    String targetName = args[0];
+    String targetName =
+      args[0].replace("@s", sender.getName())
+        .replace("@r", api.getRandomPlayer().getName())
+        .replace("@p", api.getClosestPlayer((Player) sender).getName());
+
     Player target = sender.getServer().getPlayer(targetName);
 
     if (target == null) {

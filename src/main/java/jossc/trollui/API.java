@@ -392,6 +392,10 @@ public class API {
   }
 
   public void spawnNuke(Location location) {
+    if (location.isValid()) {
+      return;
+    }
+
     for (int i = 0; i <= 10; i++) {
       EntityPrimedTNT primedTNT = new EntityPrimedTNT(
         location.getChunk(),
@@ -468,6 +472,10 @@ public class API {
   }
 
   public List<EntityCreeper> spawnCreepers(Location location, int count) {
+    if (location.isValid()) {
+      return new ArrayList<>();
+    }
+
     List<EntityCreeper> creepers = new ArrayList<>();
 
     for (int i = 1; i <= count; i++) {
@@ -480,5 +488,44 @@ public class API {
     }
 
     return creepers;
+  }
+
+  public Player getRandomPlayer() {
+    return getServer()
+      .getOnlinePlayers()
+      .values()
+      .stream()
+      .findAny()
+      .orElse(null);
+  }
+
+  public List<Player> getPlayersAround(
+    Location location,
+    int radius,
+    Player exclude
+  ) {
+    if (!location.isValid()) {
+      return new ArrayList<>();
+    }
+
+    List<Player> players = new ArrayList<>();
+
+    for (Entity entity : location.getLevel().getEntities()) {
+      if (
+        entity instanceof Player && entity.distanceSquared(location) <= radius
+      ) {
+        if (exclude != null && entity != exclude) {
+          players.add((Player) entity);
+        }
+      }
+    }
+
+    return players;
+  }
+
+  public Player getClosestPlayer(Player player) {
+    return !player.isValid()
+      ? null
+      : getPlayersAround(player, 100, player).get(0);
   }
 }
