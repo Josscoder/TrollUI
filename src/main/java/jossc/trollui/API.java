@@ -498,34 +498,4 @@ public class API {
       .findAny()
       .orElse(null);
   }
-
-  public List<Player> getPlayersAround(
-    Location location,
-    int radius,
-    Player exclude
-  ) {
-    if (!location.isValid()) {
-      return new ArrayList<>();
-    }
-
-    List<Player> players = new ArrayList<>();
-
-    for (Entity entity : location.getLevel().getEntities()) {
-      if (
-        entity instanceof Player && entity.distanceSquared(location) <= radius
-      ) {
-        if (exclude != null && entity != exclude) {
-          players.add((Player) entity);
-        }
-      }
-    }
-
-    return players;
-  }
-
-  public Player getClosestPlayer(Player player) {
-    return !player.isValid()
-      ? null
-      : getPlayersAround(player, 100, player).get(0);
-  }
 }
