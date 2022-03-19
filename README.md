@@ -1,5 +1,6 @@
-#  <img height="80" src="https://github.com/Josscoder/TrollUI/blob/production/brand/logo.png" width="80"/> TrollUI [![](https://jitpack.io/v/Josscoder/TrollUI.svg)](https://jitpack.io/#Josscoder/TrollUI)
+<h1>TrollUI<img src="https://github.com/Josscoder/TrollUI/blob/production/brand/logo.png" height="64" width="64" align="left" alt=""></h1><br> 
 
+[![](https://jitpack.io/v/Josscoder/TrollUI.svg)](https://jitpack.io/#Josscoder/TrollUI)
 
 ## 📙 Description
 This is a plugin to troll users of your server, inspired by the /troll of SURVILAND a series created by Apixelados
