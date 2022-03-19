@@ -1,4 +1,4 @@
-# TrollUI [![](https://jitpack.io/v/Josscoder/TrollUI.svg)](https://jitpack.io/#Josscoder/TrollUI)
+#  <img height="80" src="https://github.com/Josscoder/TrollUI/blob/production/brand/logo.png" width="80"/> TrollUI [![](https://jitpack.io/v/Josscoder/TrollUI.svg)](https://jitpack.io/#Josscoder/TrollUI)
 
 
 ## 📙 Description
