@@ -9,7 +9,21 @@ This can also be used as a dependency, to execute the "traps" from another plugi
 
 ## 🚩Features
 
-- 
+- Command Permission
+- Permission per Trap
+- Command auto completer:
+![](https://github.com/Josscoder/TrollUI/blob/production/brand/Screenshot_1.png)
+![](https://github.com/Josscoder/TrollUI/blob/production/brand/Screenshot_2.png)
+
+- Player Selector:
+![](https://github.com/Josscoder/TrollUI/blob/production/brand/Screenshot_7.png)
+
+- Variety of traps:
+  ![](https://github.com/Josscoder/TrollUI/blob/production/brand/Screenshot_3.png)
+  ![](https://github.com/Josscoder/TrollUI/blob/production/brand/Screenshot_4.png)
+  ![](https://github.com/Josscoder/TrollUI/blob/production/brand/Screenshot_5.png)
+  ![](https://github.com/Josscoder/TrollUI/blob/production/brand/Screenshot_6.png)
+
 
 ## 🌏 Add as dependency
 Maven:

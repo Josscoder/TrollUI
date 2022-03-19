@@ -18,7 +18,7 @@ public class TrollCommand extends VanillaCommand {
       "",
       new String[] { "trollgui", "trollui", "tu" }
     );
-    setPermission("command.troll.ui");
+    setPermission("troll.command.permission");
     setPermissionMessage(TextFormat.RED + "You do not have permissions!");
 
     this.commandParameters.clear();

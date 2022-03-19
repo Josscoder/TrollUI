@@ -34,7 +34,7 @@ public abstract class Trap implements ITrap {
 
   @Override
   public String getPermission() {
-    return "";
+    return "troll." + getIdToLowerCase() + ".permission";
   }
 
   @Override
