@@ -9,8 +9,8 @@ This can also be used as a dependency, to execute the "traps" from another plugi
 
 ## 🚩Features
 
-- Command Permission
-- Permission per Trap
+- Command Permission (troll.command.permission)
+- Permission per Trap (troll.trapname.permission, example: troll.brun.permission)
 - Command auto completer:
 
 ![](https://github.com/Josscoder/TrollUI/blob/production/brand/Screenshot_1.png)
