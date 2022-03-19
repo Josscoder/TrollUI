@@ -11,11 +11,6 @@ public class DropInventory extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "Drop Inventory";
-  }
-
-  @Override
   public String getImage() {
     return "textures/ui/inventory_icon.png";
   }

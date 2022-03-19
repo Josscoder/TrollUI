@@ -11,11 +11,6 @@ public class BedrockCage extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "Bedrock Cage";
-  }
-
-  @Override
   public String getImage() {
     return "textures/blocks/bedrock.png";
   }

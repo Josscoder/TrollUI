@@ -23,13 +23,8 @@ public class NextBlockExplodes extends Trap implements Listener {
   }
 
   @Override
-  public String getId() {
-    return "Next Block Explodes";
-  }
-
-  @Override
   public String getImage() {
-    return "";
+    return "https://i.imgur.com/u85YEt6.png";
   }
 
   @EventHandler

@@ -12,13 +12,8 @@ public class LookRandom extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "Look Random";
-  }
-
-  @Override
   public String getImage() {
-    return "";
+    return "textures/ui/warning_alex.png";
   }
 
   @Override

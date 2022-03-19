@@ -10,11 +10,6 @@ public class ShuffleInventory extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "Shuffle Inventory";
-  }
-
-  @Override
   public String getImage() {
     return "textures/ui/inventory_icon.png";
   }

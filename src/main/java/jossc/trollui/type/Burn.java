@@ -11,7 +11,7 @@ public class Burn extends Trap {
 
   @Override
   public String getImage() {
-    return "";
+    return "textures/blocks/fire_1_placeholder.png";
   }
 
   @Override

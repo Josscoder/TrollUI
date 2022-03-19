@@ -11,11 +11,6 @@ public class TNTCage extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "TNT Cage";
-  }
-
-  @Override
   public String getImage() {
     return "textures/blocks/tnt_top.png";
   }

@@ -19,6 +19,11 @@ public class HideAllPlayers extends Trap implements Listener {
     api.registerListener(this);
   }
 
+  @Override
+  public String getImage() {
+    return "textures/ui/dressing_room_skins.png";
+  }
+
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onJoin(PlayerJoinEvent event) {
     Player player = event.getPlayer();
@@ -27,11 +32,6 @@ public class HideAllPlayers extends Trap implements Listener {
     }
 
     api.hideOnlinePlayersToPlayer(player);
-  }
-
-  @Override
-  public String getId() {
-    return "Hide All Players";
   }
 
   @Override

@@ -10,11 +10,6 @@ public class ChangeTime extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "Change Time";
-  }
-
-  @Override
   public String getImage() {
     return "textures/ui/time_4sunset.png";
   }

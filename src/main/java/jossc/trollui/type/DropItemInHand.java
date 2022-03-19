@@ -11,13 +11,8 @@ public class DropItemInHand extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "Drop Item In Hand";
-  }
-
-  @Override
   public String getImage() {
-    return "";
+    return "https://i.imgur.com/piQOP6U.png";
   }
 
   @Override

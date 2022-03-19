@@ -10,11 +10,6 @@ public class LightningStrike extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "Lightning Strike";
-  }
-
-  @Override
   public String getImage() {
     return "textures/ui/weather_thunderstorm.png";
   }

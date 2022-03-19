@@ -10,11 +10,6 @@ public class AllEffects extends Trap {
   public void init() {}
 
   @Override
-  public String getId() {
-    return "All Effects";
-  }
-
-  @Override
   public String getImage() {
     return "textures/ui/speed_effect.png";
   }

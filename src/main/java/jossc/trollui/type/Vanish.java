@@ -19,6 +19,11 @@ public class Vanish extends Trap implements Listener {
     api.registerListener(this);
   }
 
+  @Override
+  public String getImage() {
+    return "textures/ui/user_icon.png";
+  }
+
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onJoin(PlayerJoinEvent event) {
     Player player = event.getPlayer();

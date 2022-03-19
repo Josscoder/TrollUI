@@ -31,7 +31,7 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import jossc.trollui.type.ITrap;
-import jossc.trollui.utils.Time;
+import jossc.trollui.utils.TimeEnum;
 import lombok.Getter;
 
 public class API {
@@ -429,9 +429,9 @@ public class API {
               if (interval <= 0) {
                 setTime(
                   player,
-                  Time
+                  TimeEnum
                     .values()[(new Random()).nextInt(
-                        Time.values().length
+                        TimeEnum.values().length
                       )].getTime()
                 );
                 times++;

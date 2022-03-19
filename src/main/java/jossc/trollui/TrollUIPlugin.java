@@ -27,7 +27,7 @@ public class TrollUIPlugin extends PluginBase {
   public void onEnable() {
     saveDefaultConfig();
 
-    if (!getConfig().getBoolean("ubbly.mode")) {
+    if (!getConfig().getBoolean("form.duplication")) {
       FormAPI.init(this);
     }
 

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum Time {
+public enum TimeEnum {
   TIME_DAY(0),
   TIME_NOON(6000),
   TIME_SUNSET(12000),
